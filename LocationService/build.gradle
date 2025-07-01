@@ -1,0 +1,56 @@
+// Apply necessary plugins for building a Java Spring Boot application
+plugins {
+    id 'java' // Java plugin for compiling Java code
+    id 'org.springframework.boot' version '3.5.3' // Spring Boot plugin to simplify Spring Boot setup
+    id 'io.spring.dependency-management' version '1.1.7' // Handles dependency versions automatically
+}
+
+// Define the group and version for the project
+group = 'org.example' // Base package or organization name
+version = '0.0.5-SNAPSHOT' // Project version (snapshot implies in-development)
+
+// Specify Java version using toolchain
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21) // Use Java 21 for compilation
+    }
+}
+
+// Define repositories for resolving project dependencies
+repositories {
+    mavenCentral() // Central Maven repository (most commonly used)
+    mavenLocal()   // Local Maven cache (useful for local libraries or testing)
+}
+
+// Extend compileOnly configuration to also use annotationProcessor dependencies
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor // Ensures annotation processors are available at compile-time
+    }
+}
+
+// Declare all required dependencies for this Spring Boot + Redis application
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter' // Core Spring Boot functionality
+
+    implementation 'org.springframework.boot:spring-boot-starter-web' // Build REST APIs or web services
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis' // Spring integration for Redis
+
+    implementation 'redis.clients:jedis:5.1.2' // Jedis Redis client library
+
+    compileOnly 'org.projectlombok:lombok' // Only needed during compilation for reducing boilerplate
+    annotationProcessor 'org.projectlombok:lombok' // Enables Lombok annotation processing
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools' // Enables live reload during development
+
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor' // For generating metadata for config classes
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' // Testing support for Spring Boot
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher' // Allows launching tests on JUnit Platform
+}
+
+// Use JUnit Platform for running the tests
+tasks.named('test') {
+    useJUnitPlatform() // Enables support for @Test, @BeforeEach, etc. using JUnit 5
+}
