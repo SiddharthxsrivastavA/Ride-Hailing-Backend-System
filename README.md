@@ -1,1 +1,1 @@
-` ./gradlew publishToMavenLocal`
+7 microservices communicating with each other,,,
