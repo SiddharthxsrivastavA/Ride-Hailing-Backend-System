@@ -1,0 +1,78 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.0'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'maven-publish'
+}
+
+group = 'com.example'
+version = '0.0.8-SNAPSHOT'
+//./gradlew publishToMavenLocal
+
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            url = uri('/Users/siddharthsrivastava/Downloads/EntityService')
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot JPA starter for database ORM support using Hibernate
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Flyway support for managing database migrations with MySQL
+    implementation 'org.flywaydb:flyway-mysql'
+
+    // Core Flyway library for database versioning and migration support
+    implementation 'org.flywaydb:flyway-core'
+
+    // Lombok to reduce boilerplate code (getters, setters, etc.)
+    compileOnly 'org.projectlombok:lombok'
+
+    // Spring Boot DevTools for automatic restarts and live reload in development
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // MySQL JDBC driver for connecting to MySQL databases
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // Enables annotation-based configuration metadata generation
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    // Annotation processor for Lombok
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Spring Boot starter for writing unit and integration tests
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // Validation support using Jakarta Bean Validation (JSR 380)
+    implementation 'org.springframework.boot:spring-boot-starter-validation:3.2.5'
+}
+
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.example</groupId>
+  <artifactId>EntityService</artifactId>
+  <versioning>
+    <lastUpdated>20250701163034</lastUpdated>
+    <snapshot>
+      <localCopy>true</localCopy>
+    </snapshot>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>module</extension>
+        <value>0.0.8-SNAPSHOT</value>
+        <updated>20250701163034</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <classifier>plain</classifier>
+        <extension>jar</extension>
+        <value>0.0.8-SNAPSHOT</value>
+        <updated>20250701163034</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>0.0.8-SNAPSHOT</value>
+        <updated>20250701163034</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+  <version>0.0.8-SNAPSHOT</version>
+</metadata>
